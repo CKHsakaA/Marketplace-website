@@ -1,0 +1,27 @@
+{% extends "core/layout.html" %}
+
+{% block title %}{{category.name}}{% endblock %}
+
+{% block body %}
+<h1 class="text-xl font-semibold text-center text-gray-700">Category | {{category.name}}</h1>
+<div class="mt-6 px-6 py-12 rounded-xl bg-gray-100">
+    <div class="grid grid-cols-3 gap-3">
+        {% for item in items %}
+            
+                <div class="bg-white rounded-xl">
+                    <a href="{% url 'item:details' item.id %}">
+                        <div>
+                        <img src="{{ item.image.url }}" class="rounded-t-xl">
+                        </div>
+    
+                        <div>
+                            <p class="text-lg text-gray-700">Name : {{item.itemname}}</p>
+                            <p class="text-lg text-gray-700 rounded-b-xl"> Price : Rs.{{item.price}}</p>
+                        </div>
+                    </a>
+                </div>
+            
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

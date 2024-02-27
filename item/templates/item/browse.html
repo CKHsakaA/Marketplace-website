@@ -1,0 +1,32 @@
+{% extends 'core/layout.html' %}
+
+{% block title %}Browse{% endblock %}
+
+{% block body %}
+
+    <div class="mt-6 px-6 py-12 rounded-xl bg-gray-100">
+            <div class="grid grid-cols-4 gap-3">
+                <div class="cols-span-1">
+                <form method="get" action="{% url 'item:browse' %}">
+                    <input name="query" class="w-full py-4 px-6 rounded-xl" type="text" value="{{ query }}" placeholder="Search any item">
+                    <button class="inline-block px-8 py-4 mb-6 mt-6 bg-teal-500 text-lg text-white font-semibold">Search</button>
+                </form>
+                </div>
+            {% for item in items %}
+                <div class="bg-white rounded-xl">
+                    <a href="{% url 'item:details' item.id %}">
+                        <div>
+                        <img src="{{ item.image.url }}" class="rounded-t-xl">
+                        </div>
+    
+                        <div>
+                            <p class="text-lg text-gray-700">Name : {{item.itemname}}</p>
+                            <p class="text-lg text-gray-700 rounded-b-xl"> Price : Rs.{{item.price}}</p>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+            </div>
+    </div>
+
+{% endblock %}
